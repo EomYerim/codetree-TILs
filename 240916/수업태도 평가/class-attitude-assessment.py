@@ -13,7 +13,6 @@ else:
         scores[name] += int(score)
 #min이 여러개면 차순위, 차순위 개수도 여러개면 Tie, 
 # 최소값 찾기
-    print(scores)
     min_value = min(scores.values())
     max_value = max(scores.values())
     if(min_value==max_value):
