@@ -4,6 +4,7 @@ input = sys.stdin.readline
 N=int(input()) # N개의 숫자
 arr=[int(input()) for _ in range(N)]
 num=Counter(arr)
+ans=[]
 if(len(set(arr))==1):
     print(0)
 else:
@@ -16,6 +17,8 @@ else:
             x=temp[j-1]
             if temp[j]==x:
                 cnt+=1
-        dic[i]=cnt
-    res= max(dic.values())
+            else:
+                ans.append(cnt)
+                cnt=1
+    res= max(ans)
     print(res)
