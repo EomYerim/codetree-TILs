@@ -4,19 +4,18 @@ N = int(input())
 num = [int(input()) for _ in range(N)]
 max_length = len(str(max(num)))
 numbers = [str(i).zfill(max_length) for i in num]
+max_count = 0 # 최대 개수 저장
 
-arr=[]
-def trace(i):
-    cnt=1
-    for j in range(1,N):
-        temp=int(numbers[j-1][i]) # 0
-        if temp+int(numbers[j][i])<10:
-            cnt+=1
-    return arr.append(cnt)
+for i in range(N):
+    valid_set = [numbers[i]] 
+    for j in range(i + 1, N):
+        check = True  # valid_set에 포함될 수 있는지 여부
+        for k in range(max_length):
+            if int(numbers[i][k]) + int(numbers[j][k]) >= 10:
+                check = False
+                break
+        if check:
+            valid_set.append(numbers[j])
+    max_count = max(max_count, len(valid_set))
 
-        
-
-
-for i in range(max_length):
-    trace(i)
-print(min(arr))
+print(max_count)
