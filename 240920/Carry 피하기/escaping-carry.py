@@ -1,21 +1,33 @@
 import sys
-input = sys.stdin.readline
-N = int(input())
-num = [int(input()) for _ in range(N)]
-max_length = len(str(max(num)))
-numbers = [str(i).zfill(max_length) for i in num]
-max_count = 0 # 최대 개수 저장
+from itertools import combinations
 
-for i in range(N):
-    valid_set = [numbers[i]] 
-    for j in range(i + 1, N):
-        check = True  # valid_set에 포함될 수 있는지 여부
-        for k in range(max_length):
-            if int(numbers[i][k]) + int(numbers[j][k]) >= 10:
-                check = False
+input = sys.stdin.readline
+
+N = int(input())
+numbers = [int(input().strip()) for _ in range(N)]
+
+max_length = len(str(max(numbers)))
+
+numbers_str = [str(num).zfill(max_length) for num in numbers]
+
+# carry가 발생하지 않는 조합인지 확인하는 함수
+def is_valid_combination(num1, num2):
+    for k in range(max_length):
+        if int(num1[k]) + int(num2[k]) >= 10:
+            return False
+    return True
+
+max_count = 1  # 최소 하나의 숫자는 항상 유효하므로 1로 초기화
+
+# 2개 이상의 숫자 조합을 비교
+for r in range(2, N + 1):  # 2개부터 N개까지 조합
+    for x in combinations(numbers_str, r):
+        valid = True
+        for num1, num2 in combinations(x, 2):
+            if not is_valid_combination(num1, num2):
+                valid = False
                 break
-        if check:
-            valid_set.append(numbers[j])
-    max_count = max(max_count, len(valid_set))
+        if valid:
+            max_count = max(max_count, r)
 
 print(max_count)
