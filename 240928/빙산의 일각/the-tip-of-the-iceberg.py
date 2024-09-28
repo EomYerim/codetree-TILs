@@ -2,8 +2,9 @@ import sys
 input = sys.stdin.readline
 N=int(input())
 height = [int(input()) for _ in range(N)]
-res=[]
-for i in range(N): #
+res=[0]*N
+
+for i in range(N): 
     ans=0
     h=height[i]
     flag=False
