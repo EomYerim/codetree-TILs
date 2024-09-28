@@ -2,8 +2,7 @@ import sys
 input = sys.stdin.readline
 N=int(input())
 height = [int(input()) for _ in range(N)]
-res=[0]*N
-
+dic=dict()
 for i in range(N): 
     ans=0
     h=height[i]
@@ -16,5 +15,5 @@ for i in range(N):
         else:
             if(flag==True):
                 flag=False
-    res.append(ans)
-print(max(res))
+    dic[i]=ans
+print(max(dic.values()))
