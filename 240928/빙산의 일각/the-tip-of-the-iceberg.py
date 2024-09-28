@@ -3,7 +3,7 @@ input = sys.stdin.readline
 N=int(input())
 height = [int(input()) for _ in range(N)]
 dic=dict()
-for i in range(N): 
+for i in range(len(set(height))):
     ans=0
     h=height[i]
     flag=False
