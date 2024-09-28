@@ -3,11 +3,14 @@ input = sys.stdin.readline
 N=int(input())
 height = [int(input()) for _ in range(N)]
 dic=dict()
-for i in range(len(set(height))):
+set_height=set(height)
+for i in range(len(set_height)):
     ans=0
-    h=height[i]
+    h=list(set_height)[i]
+    remove={h}
     flag=False
-    for j in range(N):
+    remove_set = [i for i in height if i not in remove]
+    for j in range(len(height)):
         if(height[j]-h>0):
             if(flag==False):
                 ans+=1
