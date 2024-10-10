@@ -32,7 +32,7 @@ def bfs(start):
                 visited[nx][ny] = True
                 que.append((nx, ny, length + 1))
 
-    return -1  # 도착할 수 없는 경우
+    return 0  # 도착할 수 없는 경우
 
 # BFS 실행
 result = bfs((0, 0))  # (1, 1) 대신 (0, 0)으로 시작
